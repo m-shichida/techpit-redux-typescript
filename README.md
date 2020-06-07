@@ -158,3 +158,20 @@ export default store;
 ```
 
 ## Partialって何？
+
+## オブジェクトの要素が空なのかチェックする
+オブジェクトの値を一つずつ配列に格納してそれを返す(`Object.values()`)
+every()関数では、配列の要素を一個ずつ条件をみたしているか評価していって全てがtrueならtrueを返し、それ以外の場合にfalseを返す関数
+```ts
+const career: Career = {
+  company: "Techpit",
+  position: "エンジニア",
+  startAt: "2019-10",
+  endAt: "2020-4"
+};
+
+const arr = Object.values(career);
+// => ["Techpit", "エンジニア", "2019-10", "2020-4"]
+
+Object.values(career).every(v => !v);
+```
