@@ -18,10 +18,10 @@ export type Profile = {
 
 //-----------------------
 
-import actionCreatorFactory from 'typescript-fsa';
+import actionCreatorFactory from 'typescript-fsa'; // ここと
 import { Profile } from '../../domain/entity/profile';
 
-const actionCreator = actionCreatorFactory();
+const actionCreator = actionCreatorFactory(); // ここがないと新しいstoreを作成できないので注意。
 
 const profileActions = {
   setProfile: actionCreator<Partial<Profile>>('SET_PROFILE'),
@@ -158,6 +158,8 @@ export default store;
 ```
 
 ## Partialって何？
+typescript
+「型 T のすべてのプロパティを省略可能(つまり| undefined)にした新しい型を返す Mapped Type です。」
 
 ## オブジェクトの要素が空なのかチェックする
 オブジェクトの値を一つずつ配列に格納してそれを返す(`Object.values()`)
