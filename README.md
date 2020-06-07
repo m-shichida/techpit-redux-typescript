@@ -177,3 +177,6 @@ const arr = Object.values(career);
 
 Object.values(career).every(v => !v);
 ```
+
+## CORSについて
+「オリジン間リソース共有Cross-Origin Resource Sharing (CORS) は、追加の HTTP ヘッダーを使用して、あるオリジンで動作しているウェブアプリケーションに、異なるオリジンにある選択されたリソースへのアクセス権を与えるようブラウザーに指示するための仕組み(https://developer.mozilla.org/ja/docs/Web/HTTP/CORS)」

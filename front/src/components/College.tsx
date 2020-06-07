@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 
 import { RootState } from "../domain/entity/rootState";
 import collegesActions from "../store/colleges/actions";
+import { searchColleges } from "../store/colleges/effects";
 
 import useStyles from "./styles";
 
@@ -15,6 +16,9 @@ const College = () => {
   const handleChange = (name: string) => {
     dispatch(collegesActions.setSearchWord(name));
   };
+  const handleSearch = () => {
+    dispatch(searchColleges(colleges.search));
+  };
 
   return (
     <>
@@ -25,6 +29,16 @@ const College = () => {
         value={colleges.search}
         onChange={e => handleChange(e.target.value)}
       />
+      <Button
+        fullWidth
+        variant="outlined"
+        color="primary"
+        className={classes.button}
+        onClick={handleSearch}
+        disabled={!colleges.search}
+      >
+        検索
+      </Button>
     </>
   );
 };
