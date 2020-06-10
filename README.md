@@ -180,3 +180,8 @@ Object.values(career).every(v => !v);
 
 ## CORSについて
 「オリジン間リソース共有Cross-Origin Resource Sharing (CORS) は、追加の HTTP ヘッダーを使用して、あるオリジンで動作しているウェブアプリケーションに、異なるオリジンにある選択されたリソースへのアクセス権を与えるようブラウザーに指示するための仕組み(https://developer.mozilla.org/ja/docs/Web/HTTP/CORS)」
+
+## Omitについて
+`type Omit<T, K extends keyof any>`
+型Tの中から、キー名がKに当てはまるプロパティを除外した新しい型を返す
+https://log.pocka.io/posts/typescript-builtin-type-functions/#omit
