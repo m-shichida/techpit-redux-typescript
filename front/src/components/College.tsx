@@ -17,6 +17,8 @@ import collegesActions from "../store/colleges/actions";
 import { searchColleges } from "../store/colleges/effects";
 import { College as ICollege } from "../domain/entity/college";
 import { PROFILE } from "../domain/services/profile";
+import { calculateValidation } from "../domain/services/validation";
+import validationActions from "../store/validation/actions";
 
 import useStyles from "./styles";
 
@@ -41,11 +43,21 @@ const College = () => {
   };
   const handleCollegeChange = (member: Partial<ICollege>) => {
     dispatch(profileActions.setCollege(member));
+    recalculateValidation(member);
   };
   const handleReset = () => {
     handleCollegeChange({ name: "", faculty: "", department: "" });
     dispatch(collegesActions.setSearchWord(""));
     dispatch(collegesActions.searchCollege.done({ result: [], params: {} }));
+  };
+  const recalculateValidation = (member: Partial<ICollege>) => {
+    if (!validation.isStartValidation) return;
+    const newProfile = {
+      ...profile,
+      college: { ...profile.college, ...member }
+    };
+    const message = calculateValidation(newProfile);
+    dispatch(validationActions.setValidation(message));
   };
 
   return (

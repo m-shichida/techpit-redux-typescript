@@ -17,6 +17,8 @@ import { RootState } from "../domain/entity/rootState";
 import { Profile } from "../domain/entity/profile";
 import { Gender } from "../domain/entity/gender";
 import profileActions from "../store/profile/actions";
+import { calculateValidation } from "../domain/services/validation";
+import validationActions from "../store/validation/actions";
 
 const Basic = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,18 @@ const Basic = () => {
 
   const handleChange = (member: Partial<Profile>) => {
     dispatch(profileActions.setProfile(member));
+    recalculateValidation(member);
+  };
+
+  const recalculateValidation = (member: Partial<Profile>) => {
+    if (!validation.isStartValidation) return;
+
+    const newProfile = {
+      ...profile,
+      ...member
+    };
+    const message = calculateValidation(newProfile);
+    dispatch(validationActions.setValidation(message));
   };
 
   return (
